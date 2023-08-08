@@ -1,4 +1,5 @@
 package com.example.recipewithkim
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -21,6 +22,13 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeMvvm:HomeViewModel
+    private lateinit var randomMeal:Meal
+
+    companion object {
+        const val MEAL_ID = "com.example.recipwithkim.idMeal"
+        const val MEAL_NAME = "com.example.recipewithkim.nameMeal"
+        const val MEAL_THUMB = "com.example.recipewithkim.thumbMeal"
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +50,19 @@ class HomeFragment : Fragment() {
 
         homeMvvm.getRandomMeal()
         observerRandomMeal()
+        onRandomMealClick()
 
+    }
+
+    private fun onRandomMealClick() {
+        binding.randomMealCard.setOnClickListener {
+            val intent = Intent(activity,MealActivity::class.java)
+            intent.putExtra(MEAL_ID,randomMeal.idMeal)
+            intent.putExtra(MEAL_NAME,randomMeal.strMeal)
+            intent.putExtra(MEAL_THUMB,randomMeal.strMealThumb)
+            startActivity(intent)
+
+        }
     }
 
     private fun observerRandomMeal() {
@@ -51,6 +71,9 @@ class HomeFragment : Fragment() {
             Glide.with(this@HomeFragment)
                 .load(value!!.strMealThumb)
                 .into(binding.imgRandomMeal)
+
+
+            this.randomMeal = value
         }
     }
 
