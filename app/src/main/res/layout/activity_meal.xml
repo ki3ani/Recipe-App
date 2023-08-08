@@ -72,6 +72,7 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
+                    android:id="@+id/tv_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category:Beef"
@@ -84,6 +85,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_origin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Origin:Rwanda"
@@ -119,6 +121,7 @@
 
 
             <TextView
+                android:id="@+id/tv_instructions_steps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@id/tv_instructions"
