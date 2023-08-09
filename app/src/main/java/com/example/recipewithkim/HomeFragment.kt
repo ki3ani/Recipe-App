@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
         const val MEAL_ID = "com.example.recipwithkim.idMeal"
         const val MEAL_NAME = "com.example.recipewithkim.nameMeal"
         const val MEAL_THUMB = "com.example.recipewithkim.thumbMeal"
+        const val CATEGORY_NAME = "com.example.recipewithkim.categoryName"
     }
 
 
@@ -69,7 +70,17 @@ class HomeFragment : Fragment() {
         homeMvvm.getCategories()
         observeCategoriesLiveData()
 
+        onCategoryClick()
 
+
+    }
+
+    private fun onCategoryClick() {
+        categoriesAdapter.onItemClick = { category ->
+            val intent = Intent(activity,CategoryMealsActivity::class.java)
+            intent.putExtra(CATEGORY_NAME,category.strCategory)
+            startActivity(intent)
+        }
     }
 
     private fun prepareCategoriesRecyclerView() {
