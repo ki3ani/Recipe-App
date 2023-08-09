@@ -12,14 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.recipewithkim.adapters.MostPopularAdapter
 import com.example.recipewithkim.databinding.FragmentHomeBinding
-import com.example.recipewithkim.pojo.CategoryMeals
+import com.example.recipewithkim.pojo.MealsByCategory
 import com.example.recipewithkim.pojo.Meal
-import com.example.recipewithkim.pojo.MealList
-import com.example.recipewithkim.retrofit.RetroFitInstance
 import com.example.recipewithkim.viewModel.HomeViewModel
-import retrofit2.Call
-import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class HomeFragment : Fragment() {
 
@@ -67,6 +62,18 @@ class HomeFragment : Fragment() {
         observePopularItemsLiveData()
         onPopularItemClick()
 
+        homeMvvm.getCategories()
+        observeCategoriesLiveData()
+
+    }
+
+    private fun observeCategoriesLiveData() {
+        homeMvvm.observeCategoriesLiveData().observe(viewLifecycleOwner, Observer { categories->
+            categories.forEach {category->
+                Log.d("test",category.strCategory)
+
+            }
+        } )
     }
 
     private fun onPopularItemClick() {
@@ -89,7 +96,7 @@ class HomeFragment : Fragment() {
     private fun observePopularItemsLiveData() {
         homeMvvm.observePopularItemsLiveData().observe(viewLifecycleOwner
         ) { mealList->
-            popularItemsAdapter.setMeals(mealsList = mealList as ArrayList<CategoryMeals>)
+            popularItemsAdapter.setMeals(mealsList = mealList as ArrayList<MealsByCategory>)
         }
     }
 
