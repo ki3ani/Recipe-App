@@ -56,7 +56,7 @@ class MealActivity : AppCompatActivity() {
                 binding.tvCategory.text = "Category : ${meal!!.strCategory}"
                 binding.tvOrigin.text = "Origin : ${meal.strArea}"
                 binding.tvInstructionsSteps.text = meal.strInstructions
-                youtubelink = meal.strYoutube
+                youtubelink = meal.strYoutube.toString()
             }
 
         })
