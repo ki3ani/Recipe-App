@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.recipewithkim.adapters.CategoriesAdapter
 import com.example.recipewithkim.adapters.MostPopularAdapter
 import com.example.recipewithkim.databinding.FragmentHomeBinding
 import com.example.recipewithkim.pojo.MealsByCategory
@@ -22,6 +24,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeMvvm:HomeViewModel
     private lateinit var randomMeal:Meal
     private lateinit var popularItemsAdapter:MostPopularAdapter
+    private lateinit var categoriesAdapter: CategoriesAdapter
 
     companion object {
         const val MEAL_ID = "com.example.recipwithkim.idMeal"
@@ -62,15 +65,25 @@ class HomeFragment : Fragment() {
         observePopularItemsLiveData()
         onPopularItemClick()
 
+        prepareCategoriesRecyclerView()
         homeMvvm.getCategories()
         observeCategoriesLiveData()
 
+
+    }
+
+    private fun prepareCategoriesRecyclerView() {
+        categoriesAdapter = CategoriesAdapter()
+        binding.recViewCategories.apply {
+            layoutManager = GridLayoutManager(context,3,GridLayoutManager.VERTICAL,false)
+            adapter = categoriesAdapter
+        }
     }
 
     private fun observeCategoriesLiveData() {
         homeMvvm.observeCategoriesLiveData().observe(viewLifecycleOwner, Observer { categories->
             categories.forEach {category->
-                Log.d("test",category.strCategory)
+                categoriesAdapter.setCategoryList(categories)
 
             }
         } )
