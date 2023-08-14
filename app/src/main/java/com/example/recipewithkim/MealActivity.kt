@@ -1,6 +1,5 @@
 package com.example.recipewithkim
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +31,7 @@ class MealActivity : AppCompatActivity() {
         val mealDatabase = MealDatabase.getInstance(this)
         val viewModelFactory = MealViewModelFactory(mealDatabase)
 
-        mealMvvm = ViewModelProvider(this, viewModelFactory)[MealViewModel::class.java]
+        mealMvvm = ViewModelProvider(this, viewModelFactory).get(MealViewModel::class.java)
 
         getMealInformationFromIntent()
 
@@ -50,7 +49,11 @@ class MealActivity : AppCompatActivity() {
     private fun onFavoriteClick() {
         binding.btnAddToFav.setOnClickListener {
             mealToSave?.let {
-                mealMvvm.insertMeal(this, it)
+                mealMvvm.insertMeal(this@MealActivity, it) // Pass the context
+                Toast.makeText(this@MealActivity, "Meal Saved", Toast.LENGTH_SHORT).show()
+            } ?: run {
+                // Handle the case when mealToSave is null
+                // For example, show an error message or log a warning
             }
         }
     }
@@ -64,17 +67,15 @@ class MealActivity : AppCompatActivity() {
 
     private var mealToSave: Meal? = null
     private fun observerMealDetailsLiveData() {
-        mealMvvm.observerMealDetailsLiveData().observe(this, object : Observer<Meal> {
-            override fun onChanged(value: Meal) {
-                onResponseCase()
-                val meal = value
-                mealToSave = meal
+        mealMvvm.observerMealDetailsLiveData().observe(this, Observer<Meal> { value ->
+            onResponseCase()
+            val meal = value
+            mealToSave = meal
 
-                binding.tvCategory.text = "Category : ${meal!!.strCategory}"
-                binding.tvOrigin.text = "Origin : ${meal.strArea}"
-                binding.tvInstructionsSteps.text = meal.strInstructions
-                youtubelink = meal.strYoutube.toString()
-            }
+            binding.tvCategory.text = "Category : ${meal!!.strCategory}"
+            binding.tvOrigin.text = "Origin : ${meal.strArea}"
+            binding.tvInstructionsSteps.text = meal.strInstructions
+            youtubelink = meal.strYoutube.toString()
         })
     }
 
