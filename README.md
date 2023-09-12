@@ -84,5 +84,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 
 ---
-
-Feel free to replace the placeholder content with your actual information. This README will serve as a valuable resource for anyone who wants to understand, use, or contribute to your Recipe App.
