@@ -1,6 +1,6 @@
 # Recipe App
 
-![App Screenshot](screenshot.png)
+![App Screenshot](screenshot/home.jpeg)
 
 ## Description
 
