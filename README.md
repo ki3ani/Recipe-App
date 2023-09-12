@@ -1,6 +1,6 @@
 # Recipe App
 
-![App Screenshot](screenshot/home.jpeg)
+![App Screenshot](screenshots/home.jpeg)
 
 ## Description
 
@@ -38,9 +38,10 @@ The app follows the MVVM (Model-View-ViewModel) architecture pattern for clean s
 
 ## Screenshots
 
-![Screenshot 1](screenshot1.png)
-![Screenshot 2](screenshot2.png)
-![Screenshot 3](screenshot3.png)
+![Screenshot 1](screenshots/category.jpeg)
+![Screenshot 2](screenshots/details.jpeg)
+![Screenshot 3](screenshots/favorites.jpeg)
+![Screenshot 3](screenshots/category-no.jpeg)
 
 ## Getting Started
 
