@@ -52,11 +52,6 @@ class MealViewModel(
         }
     }
 
-    fun deleteMeal(meal: Meal) {
-        viewModelScope.launch {
-            mealDatabase.mealDao().deleteMeal(meal)
-        }
-    }
 
     private fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
