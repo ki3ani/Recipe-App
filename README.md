@@ -38,10 +38,11 @@ The app follows the MVVM (Model-View-ViewModel) architecture pattern for clean s
 
 ## Screenshots
 
-![Screenshot 1](screenshots/category.jpeg)
-![Screenshot 2](screenshots/details.jpeg)
-![Screenshot 3](screenshots/favorites.jpeg)
-![Screenshot 3](screenshots/category-no.jpeg)
+
+<img src="screenshots/category.jpeg" alt="Screenshot 1" width="200"/>
+<img src="screenshots/details.jpeg" alt="Screenshot 2" width="200"/>
+<img src="screenshots/favorites.jpeg" alt="Screenshot 3" width="200"/>
+<img src="screenshots/category-no.jpeg" alt="Screenshot 4" width="200"/>
 
 ## Getting Started
 
