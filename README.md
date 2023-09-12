@@ -1,6 +1,6 @@
 # Recipe App
 
-<img src="screenshot.png" alt="App Screenshot" width="200"/>
+<img src="screenshots/home.jpeg" alt="App Screenshot" width="200"/>
 
 ## Description
 
